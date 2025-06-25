@@ -287,10 +287,6 @@ public class Blackjack {
             }
         }
 
-        // DO-WHILE LOOP TO PROCESS THE playerChoice INPUT
-        // PLAY DEALER SIDE
-        // DETERMINE OUTCOME (CHECK BUST)
-
         return outcome;
     }
 
