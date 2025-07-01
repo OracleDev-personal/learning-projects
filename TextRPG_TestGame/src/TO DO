@@ -1,0 +1,19 @@
+-- GAME
+- Create quest/bounty system to start
+- Continue working on developing battleHandler
+
+-- CHARACTERS
+- Create extended object for Humans, Goblins & Wolves and set their inventory/weapons
+- LATER: evaluate if other characters are needed
+
+-- IO
+- LATER: After testing is done, convert this to .ser file writer/loader
+
+-- ITEMS
+- Starting with just Melee weapons and armor for now
+
+-- WORLD
+- Create village map/encounter (main hub)
+- Create first enemy map/encounter
+
+
