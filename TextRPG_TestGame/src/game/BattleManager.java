@@ -2,9 +2,10 @@ package game;
 
 import characters.Enemy;
 import characters.Player;
+import characters.Entity;
+import io.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class BattleManager {
 
@@ -12,22 +13,45 @@ public class BattleManager {
 
     public void battleHandler(Player player, String enemyRace, int numEnemies) {
 
+        boolean battleComplete = false;
+
+        Set<Entity> allCharacters = new HashSet<>();
+        allCharacters.add(player); allCharacters.addAll(createEnemy(numEnemies, player.playerLevel, enemyRace));
+        List<Entity> turnOrder = new ArrayList<>(allCharacters);
+        turnOrder.sort(Comparator.comparingInt(Entity::getSpeed));
+
+        do {
+            for(Entity character : turnOrder) {
+                if(player.health <= 0) {
+                    System.out.println("You have died!");
+                    break;
+                }
+                System.out.println(character.getName() + "'s Turn!");
+                if (character instanceof Player) {
+                    handlePlayerTurn(player);
+                } else if (character instanceof Enemy enemy) {
+                    handleEnemyTurn(enemy);
+                }
+            }
+        } while (player.health > 0 && !battleComplete);
 
     }
 
 
     void postBattle(Player player) {
         ExperiencePoints experiencePoints = new ExperiencePoints();
+
+
         experiencePoints.playerXPCheck(player);
     }
 
-    Enemy createEnemy(int howMany, int enemyMaxLevel) {
+    Set<Enemy> createEnemy(int howMany, int enemyMaxLevel, String race) {
         Set<Enemy> createdEnemies = new HashSet<>();
         for (int i = 0; i < howMany; i++) {
-
+            Enemy enemy = new Enemy(createName(race, enemyMaxLevel), race, enemyMaxLevel);
+            createdEnemies.add(enemy);
         }
-
-        return null;
+        return createdEnemies;
     }
 
     // Creates generic names for enemies based on race passed in. Unique named enemies do not need this.
@@ -71,6 +95,14 @@ public class BattleManager {
             }
         }
         return null;
+    }
+
+    void handlePlayerTurn(Player player) {
+        // TO ADD - Need to create ability for player to take actions
+    }
+
+    void handleEnemyTurn(Enemy enemy) {
+        // TO ADD - Need to create ability for player to take actions - will be able to reflect to enemies after.
     }
 
 

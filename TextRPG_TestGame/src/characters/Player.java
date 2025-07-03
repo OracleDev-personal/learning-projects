@@ -7,7 +7,7 @@ import java.util.*;
 import static game.ExperiencePoints.healthXPLevel;
 import static game.ExperiencePoints.xpLevels;
 
-public class Player extends Character {
+public class Player extends Entity {
 
     public int playerLevel;
     public int xp;
