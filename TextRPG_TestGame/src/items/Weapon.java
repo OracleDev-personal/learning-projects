@@ -20,6 +20,10 @@ public class Weapon extends Item {
         return quality;
     }
 
+    public int getDamage() {
+        return damage;
+    }
+
     @Override
     public String toString() {
         return "Item : " + getName() + " | Quantity: " + getQuantity() + " | Quality: " + getQuality();

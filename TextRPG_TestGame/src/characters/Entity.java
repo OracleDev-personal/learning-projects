@@ -1,5 +1,7 @@
 package characters;
 
+import items.Attacks.Attack;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
@@ -44,7 +46,23 @@ public class Entity {
     }
 
     public int getSpeed() {
-        speed = random.nextInt(1, 11) + attributeMap.get("agility");
+        speed = random.nextInt(1, 11) + getAgility();
         return speed;
+    }
+
+    public void takeDamage(int totalDamage) {
+        totalDamage -= armorRating;
+        health -= totalDamage;
+        System.out.println(name + " has taken " + totalDamage + " damage! They now have " + health + " hp remaining.");
+    }
+
+    public int getVitality() {
+        return attributeMap.get("vitality");
+    }
+    public int getStrength() {
+        return attributeMap.get("strength");
+    }
+    public int getAgility() {
+        return attributeMap.get("agility");
     }
 }

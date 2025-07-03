@@ -14,7 +14,6 @@ public class Player extends Entity {
     public int attributePoints;
     public Inventory inventory;
 
-
     public Player(String name) {
         super(name);
         race = "Human";
@@ -29,6 +28,7 @@ public class Player extends Entity {
                 "agility", 0
         ));
         inventory = new Inventory();
+
     }
 
     public void addAttributes(Scanner scanner) {
@@ -72,4 +72,6 @@ public class Player extends Entity {
     public void getPlayerInventory() {
         inventory.displayInventory();
     }
+
+
 }

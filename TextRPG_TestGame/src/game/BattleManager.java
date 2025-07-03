@@ -9,9 +9,10 @@ import java.util.*;
 
 public class BattleManager {
 
+    private Scanner scanner;
     private Set<Enemy> Enemies;
 
-    public void battleHandler(Player player, String enemyRace, int numEnemies) {
+    public void battleHandler(Player player, String enemyRace, int numEnemies, Scanner scanner) {
 
         boolean battleComplete = false;
 
@@ -99,12 +100,47 @@ public class BattleManager {
 
     void handlePlayerTurn(Player player) {
         // TO ADD - Need to create ability for player to take actions
+        int actionPoints = 1;
+        System.out.println("Available action points: " + actionPoints);
+        while (actionPoints >= 1) {
+            String playerAction = getPlayerAction();
+            switch (playerAction) {
+                //case "attack" -> ;//TO-DO build attack menu & different options based on equipment
+                case "inventory" -> player.getPlayerInventory();
+                case "character stats" -> player.toString();
+                //case "flee" -> ;//TO-DO build flee, combat end
+            }
+        }
+
     }
 
     void handleEnemyTurn(Enemy enemy) {
         // TO ADD - Need to create ability for player to take actions - will be able to reflect to enemies after.
     }
 
+    String getPlayerAction() {
+        Map<String, String> availableActions = Map.of(
+                "1", "attack",
+                "attack", "attack",
+                "2", "inventory",
+                "inventory", "inventory",
+                "3", "character stats",
+                "character", "character stats",
+                "stats", "character stats",
+                "character stats", "character stats",
+                "4", "flee",
+                "flee", "flee"
+        );
+        String playerChoice;
+        scanner = new Scanner(System.in);
+        System.out.println("\nAvailable actions: ");
+        System.out.println("1. Attack   2. Inventory   3. Character Stats   4. Flee\n");
+        do{
+            System.out.print("Enter action: ");
+            playerChoice = scanner.nextLine().toLowerCase().trim();
+        } while(!availableActions.containsKey(playerChoice));
+        return availableActions.get(playerChoice);
+    }
 
 
 }
